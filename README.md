@@ -27,19 +27,19 @@ TAREA  - MACHINE LEARNING
 
 2. **How numerical stability issues may arise in softmax**
 
-La implementación del modelo Softmax incorporó una corrección numérica para evitar overflow, restando el valor máximo de los logits antes de calcular las exponenciales.
-Esta medida garantizó estabilidad durante el entrenamiento, sin errores y con métricas idénticas a scikit-learn. La coincidencia en la matriz de confusión evidencia que el modelo fue ***numéricamente estable y preciso***.
+    La implementación del modelo Softmax incorporó una corrección numérica para evitar overflow, restando el valor máximo de los logits antes de calcular las exponenciales.
+    Esta medida garantizó estabilidad durante el entrenamiento, sin errores y con métricas idénticas a scikit-learn. La coincidencia en la matriz de confusión evidencia que el modelo fue ***numéricamente estable y preciso***.
 
 
 3. **When OvA and multinomial approaches diverge in predictions**
 
-En los resultados obtenidos, ***OvA y Multinomial alcanzaron la misma exactitud y matriz de confusión***, lo que refleja que las clases del dataset Wine están bien separadas.
-Sin embargo, los ***coeficientes más grandes en OvA*** indican mayor esfuerzo individual de cada modelo por separar su clase. En problemas con solapamiento o desbalance, el enfoque ***multinomial*** suele comportarse mejor, ya que optimiza todas las clases simultáneamente y mantiene probabilidades coherentes.
+    En los resultados obtenidos, ***OvA y Multinomial alcanzaron la misma exactitud y matriz de confusión***, lo que refleja que las clases del dataset Wine están bien separadas.
+    Sin embargo, los ***coeficientes más grandes en OvA*** indican mayor esfuerzo individual de cada modelo por separar su clase. En problemas con solapamiento o desbalance, el enfoque ***multinomial*** suele comportarse mejor, ya que optimiza todas las clases simultáneamente y mantiene probabilidades coherentes.
 
 
 4. **Conclusión General**
 
-Los tres modelos demostraron alta eficacia y coherencia con scikit-learn.
-El modelo ***binario*** logró una buena clasificación en un problema médico; ***OvA*** fue efectivo pero con pesos más amplios; y ***Softmax*** ofreció el mismo rendimiento con mejor estabilidad y coherencia probabilística.
-Esto confirma la correcta implementación del gradiente y el dominio del proceso de aprendizaje en modelos de clasificación.
+    Los tres modelos demostraron alta eficacia y coherencia con scikit-learn.
+    El modelo ***binario*** logró una buena clasificación en un problema médico; ***OvA*** fue efectivo pero con pesos más amplios; y ***Softmax*** ofreció el mismo rendimiento con mejor estabilidad y coherencia probabilística.
+    Esto confirma la correcta implementación del gradiente y el dominio del proceso de aprendizaje en modelos de clasificación.
 
