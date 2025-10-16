@@ -1,101 +1,41 @@
+
+---
 ## Assignment: Logistic Regression and Multiclass Extensions
 
+# TAREA2_ML_LLARO_RIOS_VARGAS
+TAREA  - MACHINE LEARNING
+
+# Grupo
+- LLARO CASTRO, DIEGO RENATO
+- RIOS MEZA, JENNIFER SASKIA
+- VARGAS FLORES, JOHANNA ANTONELLA
+
 **Deadline:** Monday, October 13th, 2025, 23:59
-
 **Environment:** Python, `numpy`, `pandas`, `matplotlib`, `scikit-learn`, `ucimlrepo`.
-
 ---
 
-### Part A. Binary Logistic Regression from Scratch
 
-1. **Dataset**
-   Use the **Heart Disease dataset** from the UCI repository. You can do this by running:
-```python
-!pip install ucimlrepo
+# Solución
+1. **How the gradient differs between binary, OvA, and multinomial forms**
+En la ***regresión logística binaria*** (Heart Disease dataset), el modelo alcanzó un ***84.6% de exactitud***, con alta precisión (92.3%) y buen recall (76.6%), muy similar al modelo de scikit-learn. Esto confirma que el gradiente descendente se implementó correctamente y que la convergencia fue estable tras más de 16 000 iteraciones.
 
-from ucimlrepo import fetch_ucirepo
+En el enfoque ***One-vs-All (OvA)*** aplicado al dataset Wine, la exactitud fue ***98.15%***, igual al resultado de scikit-learn. Cada clasificador binario logró separar correctamente su clase, aunque los coeficientes mostraron ***normas L2 mayores***, lo que indica un ajuste más sensible por la falta de regularización conjunta.
 
-heart_disease = fetch_ucirepo(id = 45)
-X = heart_disease.data.features # features
-Y = heart_disease.data.targets # heart disease diagnosis
+En el modelo ***multinomial (Softmax)***, también con Wine, se obtuvo el mismo ***98.15% de exactitud***, demostrando que el gradiente conjunto actualiza de forma coherente todas las clases y mantiene la misma capacidad predictiva que OvA, pero con un equilibrio interno más estable.
 
-```
-  Originally, the Y variable is an integer with varying values. Recode it to be either 0 (when the original value is 0) or 1 (otherwise)
 
-   * Task: predict whether a patient has heart disease.
-   * Standardize numeric features, one-hot encode categorical ones.
-   * Split into 70% train / 30% test.
+2. **How numerical stability issues may arise in softmax**
+La implementación del modelo Softmax incorporó una corrección numérica para evitar overflow, restando el valor máximo de los logits antes de calcular las exponenciales.
+Esta medida garantizó estabilidad durante el entrenamiento, sin errores y con métricas idénticas a scikit-learn. La coincidencia en la matriz de confusión evidencia que el modelo fue ***numéricamente estable y preciso***.
 
-3. **Model Derivation and Implementation**
 
-   * Implement gradient descent to maximize the log-likelihood (or equivalently, minimize the negative log-likelihood).
-   * Show convergence plots for at least two learning rates.
+3. **When OvA and multinomial approaches diverge in predictions**
+En los resultados obtenidos, ***OvA y Multinomial alcanzaron la misma exactitud y matriz de confusión***, lo que refleja que las clases del dataset Wine están bien separadas.
+Sin embargo, los ***coeficientes más grandes en OvA*** indican mayor esfuerzo individual de cada modelo por separar su clase. En problemas con solapamiento o desbalance, el enfoque ***multinomial*** suele comportarse mejor, ya que optimiza todas las clases simultáneamente y mantiene probabilidades coherentes.
 
-4. **Evaluation**
 
-   * Compute accuracy, precision, recall, F1 score in the test set.
-   * Compare with `sklearn.linear_model.LogisticRegression`.
-
----
-
-### Part B. Multiclass Logistic Regression via One-vs-All (OvA)
-
-4. **Dataset**
-   Use the **Wine dataset** (`from sklearn.datasets import load_wine`).
-
-   * There are 3 wine cultivars (classes) with 13 chemical features.
-   * Standardize all features.
-
-5. **OvA Implementation**
-
-   * Build **three binary classifiers**, each distinguishing one class vs. all others.
-   * Use your binary logistic regression optimizer from Part A.
-   * For prediction:
-
-     * Compute probabilities from each classifier.
-     * Assign each observation to the class with the highest predicted probability.
-   * Report confusion matrix and accuracy.
-
-6. **Comparison**
-
-   * Fit `LogisticRegression(multi_class="ovr")` from sklearn.
-   * Compare coefficients and accuracy to your own implementation.
-
----
-
-### Part C. Multinomial (Softmax) Logistic Regression from Scratch
-
-7. **Theory**
-
-   * Derive the gradient of the log-likelihood function for muticlass classification (check the [notebook for session 4](https://colab.research.google.com/drive/1QKPnTQ_CtqY_4IZHr_dUAzR3nfj8bLbW?usp=sharing))
-
-8. **Implementation**
-
-   * Implement gradient descent updating all class weight vectors simultaneously.
-   * Include a `softmax` function with numerical stability (`z -= np.max(z, axis=1, keepdims=True)` before exponentiation).
-   * Monitor log-likelihood convergence.
-
-9. **Evaluation**
-
-   * Use the same Wine dataset.
-   * Compute accuracy, per-class precision/recall, and confusion matrix.
-   * Compare to `LogisticRegression(multi_class="multinomial", solver="lbfgs")`.
-
----
-
-### Deliverables
-
-You must fork the [original repository](https://github.com/RodrigoGrijalba/ENEI-2025-ML1-Tarea2), and turn in a link to your group's repository with:
-
-* A Jupyter notebook (in the `src` folder) with:
-
-  * Binary logistic regression (from scratch and sklearn)
-  * OvA and multinomial implementations
-  * Gradient derivations
-  * Convergence and comparison plots
-* A short (~600 words) write-up explaining:
-
-  * How the gradient differs between binary, OvA, and multinomial forms
-  * How numerical stability issues may arise in softmax
-  * When OvA and multinomial approaches diverge in predictions
+4. **Conclusión General**
+Los tres modelos demostraron alta eficacia y coherencia con scikit-learn.
+El modelo ***binario*** logró una buena clasificación en un problema médico; ***OvA*** fue efectivo pero con pesos más amplios; y ***Softmax*** ofreció el mismo rendimiento con mejor estabilidad y coherencia probabilística.
+Esto confirma la correcta implementación del gradiente y el dominio del proceso de aprendizaje en modelos de clasificación.
 
