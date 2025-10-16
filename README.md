@@ -17,11 +17,11 @@ TAREA  - MACHINE LEARNING
 
 # Solución
 1. **How the gradient differs between binary, OvA, and multinomial forms**
-En la ***regresión logística binaria*** (Heart Disease dataset), el modelo alcanzó un ***84.6% de exactitud***, con alta precisión (92.3%) y buen recall (76.6%), muy similar al modelo de scikit-learn. Esto confirma que el gradiente descendente se implementó correctamente y que la convergencia fue estable tras más de 16 000 iteraciones.
+    - En la ***regresión logística binaria*** (Heart Disease dataset), el modelo alcanzó un ***84.6% de exactitud***, con alta precisión (92.3%) y buen recall (76.6%), muy similar al modelo de scikit-learn. Esto confirma que el gradiente descendente se implementó correctamente y que la convergencia fue estable tras más de 16 000 iteraciones.
 
-En el enfoque ***One-vs-All (OvA)*** aplicado al dataset Wine, la exactitud fue ***98.15%***, igual al resultado de scikit-learn. Cada clasificador binario logró separar correctamente su clase, aunque los coeficientes mostraron ***normas L2 mayores***, lo que indica un ajuste más sensible por la falta de regularización conjunta.
+    - En el enfoque ***One-vs-All (OvA)*** aplicado al dataset Wine, la exactitud fue ***98.15%***, igual al resultado de scikit-learn. Cada clasificador binario logró separar correctamente su clase, aunque los coeficientes mostraron ***normas L2 mayores***, lo que indica un ajuste más sensible por la falta de regularización conjunta.
 
-En el modelo ***multinomial (Softmax)***, también con Wine, se obtuvo el mismo ***98.15% de exactitud***, demostrando que el gradiente conjunto actualiza de forma coherente todas las clases y mantiene la misma capacidad predictiva que OvA, pero con un equilibrio interno más estable.
+    - En el modelo ***multinomial (Softmax)***, también con Wine, se obtuvo el mismo ***98.15% de exactitud***, demostrando que el gradiente conjunto actualiza de forma coherente todas las clases y mantiene la misma capacidad predictiva que OvA, pero con un equilibrio interno más estable.
 
 
 2. **How numerical stability issues may arise in softmax**
