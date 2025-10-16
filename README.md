@@ -3,15 +3,15 @@
 ## Assignment: Logistic Regression and Multiclass Extensions
 
 # TAREA2_ML_LLARO_RIOS_VARGAS
-TAREA  - MACHINE LEARNING
+TAREA 2 - MACHINE LEARNING
 
 # Grupo
 - LLARO CASTRO, DIEGO RENATO
 - RIOS MEZA, JENNIFER SASKIA
 - VARGAS FLORES, JOHANNA ANTONELLA
 
----
 **Deadline:** Monday, October 13th, 2025, 23:59
+---
 
 **Environment:** Python, `numpy`, `pandas`, `matplotlib`, `scikit-learn`, `ucimlrepo`.
 ---
