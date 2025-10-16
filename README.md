@@ -10,7 +10,9 @@ TAREA  - MACHINE LEARNING
 - RIOS MEZA, JENNIFER SASKIA
 - VARGAS FLORES, JOHANNA ANTONELLA
 
+---
 **Deadline:** Monday, October 13th, 2025, 23:59
+
 **Environment:** Python, `numpy`, `pandas`, `matplotlib`, `scikit-learn`, `ucimlrepo`.
 ---
 
